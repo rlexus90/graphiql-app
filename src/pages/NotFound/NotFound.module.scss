@@ -1,0 +1,17 @@
+.notFound {
+  width: 100vw;
+  margin: 150px 0;
+  font-size: 50px;
+  cursor: pointer;
+
+  h1,
+  p {
+    width: fit-content;
+    display: block;
+    margin: 0 auto;
+  }
+  p {
+    font-size: 0.5em;
+    padding: 20px;
+  }
+}
