@@ -1,6 +1,5 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-export const Login:FC =()=>{
-
-	return <>Login work!</>
-}
+export const Login: FC = () => {
+  return <>Login work!</>;
+};
