@@ -4,7 +4,7 @@ import { setupStore } from './store/store';
 import { RouterProvider } from 'react-router-dom';
 import router from './controlers/router/router';
 
-const store = setupStore();
+const store = setupStore({ changeLang: { language: 'En' } });
 
 function App() {
   return (

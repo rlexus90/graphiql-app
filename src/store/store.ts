@@ -4,11 +4,11 @@ import {
   PreloadedState,
 } from '@reduxjs/toolkit';
 import respParam from './slices/RespParam';
-import nextPage from './slices/NextPage';
+import changeLang from './slices/ChangeLang';
 
 const rootReduser = combineReducers({
   respParam,
-  nextPage,
+  changeLang,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {

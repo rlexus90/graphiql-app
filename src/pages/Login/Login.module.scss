@@ -1,0 +1,134 @@
+$main-color: #ffffff;
+$form-color: $main-color;
+$secondary-color: #2196f3;
+$error-message-color: rgb(157, 3, 3);
+$color-text: rgba(black, 0.5);
+$width: 300px; // Change Me
+
+.wrapper {
+  .group {
+    margin: 20px auto 0;
+    width: $width;
+    height: calc($width/6);
+    overflow: hidden;
+    position: relative;
+  }
+
+  label {
+    position: absolute;
+    top: calc($width/15);
+    // color: rgba(white, 0.5);
+    color: $color-text;
+    font-size: calc($width/15);
+    cursor: text;
+    transition: 0.25s ease;
+  }
+
+  input {
+    display: block;
+    width: $width;
+    padding-top: calc($width/15);
+    border: none;
+    border-radius: 0;
+    border-bottom: solid calc($width/150) $color-text;
+    color: rgb(0, 0, 0);
+    background: $main-color;
+    font-size: calc($width/15);
+    transition: 0.3s ease;
+    &:valid {
+      border-bottom-color: $secondary-color;
+      ~ label {
+        top: 0;
+        font-size: calc($width/25);
+        color: $secondary-color;
+      }
+    }
+    &:focus {
+      outline: none;
+      border-bottom-color: $secondary-color;
+      ~ label {
+        top: 0;
+        font-size: calc($width/25);
+        color: $secondary-color;
+      }
+
+      // ~ .bar:before {
+      //   transform: translateX(0);
+      // }
+    }
+
+    // Stop Chrome's hideous pale yellow background on auto-fill
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px $main-color inset;
+      -webkit-text-fill-color: rgb(0, 0, 0) !important;
+      // border-bottom-color: rgba(white, .5);
+    }
+  }
+
+  ::selection {
+    background: rgba($secondary-color, 0.3);
+  }
+
+  .form {
+    position: relative;
+    background-color: $form-color;
+    width: $width * 1.5;
+    margin: 0 auto;
+    border: 1px solid black;
+    font-size: 1.2rem;
+  }
+
+  .pic-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    &:valid {
+      ~ label {
+        font-size: calc($width/15);
+      }
+    }
+  }
+
+  .pic-label {
+    width: $width;
+    height: calc($width/7);
+    text-align: center;
+    line-height: 200%;
+    cursor: pointer;
+    display: block;
+    color: rgba(white, 0.5);
+    font-size: calc($width/15);
+    border: solid calc($width/150) rgba(white, 0.5);
+    border-radius: 10px;
+  }
+
+  .error_mesage {
+    margin: 5px auto 0;
+    color: $error-message-color;
+    width: calc($width * 1);
+  }
+
+  .submit {
+    cursor: pointer;
+    margin: 40px auto 20px;
+    padding: 0;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: solid calc($width/150) $color-text;
+    &:valid {
+      border-bottom-color: $color-text;
+    }
+  }
+
+  .error-msg {
+    margin: 0 auto;
+    color: $error-message-color;
+    width: calc($width * 1.5);
+    line-height: 1.5;
+  }
+}
