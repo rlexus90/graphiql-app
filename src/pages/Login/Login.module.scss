@@ -6,6 +6,23 @@ $color-text: rgba(black, 0.5);
 $width: 300px; // Change Me
 
 .wrapper {
+  max-width: calc($width * 2);
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
+    font-size: 2em;
+  }
+
+  a,
+  a:visited {
+    padding: 0.5em;
+    display: block;
+    width: calc($width * 2);
+    text-align: center;
+    color: $secondary-color;
+  }
+
   .group {
     margin: 20px auto 0;
     width: $width;
@@ -123,6 +140,9 @@ $width: 300px; // Change Me
     &:valid {
       border-bottom-color: $color-text;
     }
+  }
+  .valid {
+    background-color: rgba($secondary-color, 0.7);
   }
 
   .error-msg {

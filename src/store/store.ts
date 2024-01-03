@@ -3,18 +3,24 @@ import {
   combineReducers,
   PreloadedState,
 } from '@reduxjs/toolkit';
-import respParam from './slices/RespParam';
+import firebaseSlice from './slices/FirebaseSlice';
 import changeLang from './slices/ChangeLang';
+import authSlice from './slices/authSlice';
 
 const rootReduser = combineReducers({
-  respParam,
+  firebaseSlice,
   changeLang,
+  authSlice,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({
     reducer: rootReduser,
     preloadedState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   });
 };
 

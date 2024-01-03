@@ -6,7 +6,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  language: 'En',
+  language: (localStorage.getItem('lang') as Language) ?? 'En',
 };
 
 export const changeLangSlice = createSlice({
@@ -15,6 +15,7 @@ export const changeLangSlice = createSlice({
   reducers: {
     changeLang: (state) => {
       state.language = state.language === 'En' ? 'Ua' : 'En';
+      localStorage.setItem('lang', state.language);
     },
   },
 });

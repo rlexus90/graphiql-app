@@ -2,22 +2,26 @@ import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useActions, useAppSelector } from '../../store/hook/hook';
 import { ILang } from '../../types/localisation';
+import style from './Header.module.scss';
 
 export const Header: FC = () => {
   const lang = useAppSelector((store) => store.changeLang.language);
   const { changeLang } = useActions();
+  const isLogin = useAppSelector((store) => store.authSlice.isLogin);
 
   return (
     <>
       <header>
-        <div className="wrapper">
-          <nav>
+        <div className={style.wrapper}>
+          <nav className={style.nav}>
             <ul>
               <li>
                 <NavLink to="/about">{text[lang].about}</NavLink>
               </li>
               <li>
-                <NavLink to="/login">{text[lang].signIn}</NavLink>
+                <NavLink to="/login">
+                  {isLogin ? text[lang].logout : text[lang].signIn}
+                </NavLink>
               </li>
               <li>
                 <NavLink to="/">{text[lang].main}</NavLink>

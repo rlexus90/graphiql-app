@@ -1,0 +1,22 @@
+$color_text: black;
+
+.wrapper {
+  padding: 1em 2em;
+  font-size: 2em;
+  color: $color_text;
+}
+
+.nav {
+  ul {
+    display: flex;
+    justify-content: end;
+  }
+  li {
+    padding: 0 0.7em;
+    cursor: pointer;
+  }
+
+  a:visited {
+    color: $color_text;
+  }
+}
