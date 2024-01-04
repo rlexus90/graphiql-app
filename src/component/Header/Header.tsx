@@ -23,11 +23,15 @@ export const Header: FC = () => {
                   {isLogin ? text[lang].logout : text[lang].signIn}
                 </NavLink>
               </li>
-            {isLogin? <li>
-                <NavLink to="/main">{text[lang].main}</NavLink>
-              </li>: <li>
-                <NavLink to="/signup">{text[lang].signUp}</NavLink>
-              </li>}
+              {isLogin ? (
+                <li>
+                  <NavLink to="/main">{text[lang].main}</NavLink>
+                </li>
+              ) : (
+                <li>
+                  <NavLink to="/signup">{text[lang].signUp}</NavLink>
+                </li>
+              )}
               <li
                 onClick={() => {
                   changeLang();
@@ -49,13 +53,13 @@ const text: ILang = {
     about: 'Про нас',
     signIn: 'Увійти',
     logout: 'Вийти',
-		signUp: 'Зареєструватись',
+    signUp: 'Зареєструватись',
   },
   En: {
     main: 'Main',
     about: 'About us',
     signIn: 'Sign in',
     logout: 'Logout',
-		signUp: 'Sign up',
+    signUp: 'Sign up',
   },
 };
