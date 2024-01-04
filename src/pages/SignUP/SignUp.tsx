@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Header } from '../../component/Header/Header';
+import Header from '../../component/Header/Header';
 import { ISignUpForm } from '../../types/formTypes';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import style from '../Login/Login.module.scss';
@@ -12,7 +12,7 @@ import { IUser } from '../../types/user';
 import { ILang } from '../../types/localisation';
 import clsx from 'clsx';
 
-export const SignUp: FC = () => {
+const SignUp: FC = () => {
   const { setUserStore } = useActions();
   const { auth } = useAppSelector((store) => store.firebaseSlice);
   const { language } = useAppSelector((store) => store.changeLang);
@@ -105,6 +105,8 @@ export const SignUp: FC = () => {
     </>
   );
 };
+
+export default SignUp;
 
 const text: ILang = {
   Ua: {

@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Header } from '../../component/Header/Header';
+import Header from '../../component/Header/Header';
 
-export const About: FC = () => {
+const About: FC = () => {
   return (
     <>
       <Header />
@@ -9,3 +9,5 @@ export const About: FC = () => {
     </>
   );
 };
+
+export default About;

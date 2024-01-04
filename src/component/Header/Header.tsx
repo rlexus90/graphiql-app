@@ -4,7 +4,7 @@ import { useActions, useAppSelector } from '../../store/hook/hook';
 import { ILang } from '../../types/localisation';
 import style from './Header.module.scss';
 
-export const Header: FC = () => {
+const Header: FC = () => {
   const lang = useAppSelector((store) => store.changeLang.language);
   const { changeLang } = useActions();
   const isLogin = useAppSelector((store) => store.authSlice.isLogin);
@@ -46,6 +46,8 @@ export const Header: FC = () => {
     </>
   );
 };
+
+export default Header;
 
 const text: ILang = {
   Ua: {

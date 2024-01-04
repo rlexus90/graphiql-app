@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
-export const EditorComponent: FC = () => {
+const EditorComponent: FC = () => {
   return <>Editor</>;
 };
+
+export default EditorComponent;

@@ -1,11 +1,11 @@
 import { FC, Suspense } from 'react';
 import { useAppSelector } from '../../store/hook/hook';
 import { ILang } from '../../types/localisation';
-import { Header } from '../../component/Header/Header';
-import { EditorComponent } from '../../component/EditorComponent/EditorComponent';
-import { Loader } from '../../component/Loader/Loader';
+import Header from '../../component/Header/Header';
+import EditorComponent from '../../component/EditorComponent/EditorComponent';
+import Loader from '../../component/Loader/Loader';
 
-export const Main: FC = () => {
+const Main: FC = () => {
   const lang = useAppSelector((store) => store.changeLang.language);
 
   return (
@@ -19,6 +19,8 @@ export const Main: FC = () => {
     </>
   );
 };
+
+export default Main;
 
 const text: ILang = {
   Ua: {
