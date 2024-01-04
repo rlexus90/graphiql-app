@@ -41,7 +41,7 @@ export const SignUp: FC = () => {
             uid: user.uid,
             accessToken: user.accessToken,
           });
-          navigate('/');
+          navigate('/main');
         })
         .catch((error) => {
           const errorCode = error.code;

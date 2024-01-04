@@ -16,16 +16,18 @@ export const Header: FC = () => {
           <nav className={style.nav}>
             <ul>
               <li>
-                <NavLink to="/about">{text[lang].about}</NavLink>
+                <NavLink to="/">{text[lang].about}</NavLink>
               </li>
               <li>
                 <NavLink to="/login">
                   {isLogin ? text[lang].logout : text[lang].signIn}
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/">{text[lang].main}</NavLink>
-              </li>
+            {isLogin? <li>
+                <NavLink to="/main">{text[lang].main}</NavLink>
+              </li>: <li>
+                <NavLink to="/signup">{text[lang].signUp}</NavLink>
+              </li>}
               <li
                 onClick={() => {
                   changeLang();
@@ -47,11 +49,13 @@ const text: ILang = {
     about: 'Про нас',
     signIn: 'Увійти',
     logout: 'Вийти',
+		signUp: 'Зареєструватись',
   },
   En: {
     main: 'Main',
     about: 'About us',
     signIn: 'Sign in',
     logout: 'Logout',
+		signUp: 'Sign up',
   },
 };

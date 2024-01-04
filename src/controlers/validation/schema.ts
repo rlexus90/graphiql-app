@@ -10,8 +10,8 @@ export const setupSignUpSchema = (lang: Language) => {
     password1: yup
       .string()
       .required(text[lang].passwordReq)
-      .matches(/[A-Z]/, text[lang].pass_Uppercase)
-      .matches(/[a-z]/, text[lang].pass_Lowercase)
+      .matches(/[A-ZА-Я]/, text[lang].pass_Uppercase)
+      .matches(/[a-zа-я]/, text[lang].pass_Lowercase)
       .matches(/\d/, text[lang].pass_Digit)
       .matches(/[!@#$%^&*]/, text[lang].pass_Special)
       .min(8, text[lang].pass_Length),
