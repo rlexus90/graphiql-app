@@ -21,6 +21,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@react-firebase/auth": "^0.2.10",
     "@reduxjs/toolkit": "^1.9.7",
+    "@uiw/react-codemirror": "^4.21.21",
     "clsx": "^2.1.0",
     "firebase": "^10.7.1",
     "react": "^18.2.0",

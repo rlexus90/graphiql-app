@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import { useAppSelector } from '../../store/hook/hook';
 import { ILang } from '../../types/localisation';
 import { Header } from '../../component/Header/Header';
+import { EditorComponent } from '../../component/EditorComponent/EditorComponent';
 
 export const Main: FC = () => {
   const lang = useAppSelector((store) => store.changeLang.language);
@@ -10,6 +11,9 @@ export const Main: FC = () => {
     <>
       <Header />
       {text[lang].main + lang}
+      <Suspense>
+        <EditorComponent />
+      </Suspense>
     </>
   );
 };
