@@ -96,31 +96,27 @@ $width: 300px; // Change Me
     font-size: 1.2rem;
   }
 
-  .pic-input {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-    &:valid {
-      ~ label {
-        font-size: calc($width/15);
-      }
-    }
-  }
-
-  .pic-label {
+  .checkbox {
+    display: block;
     width: $width;
     height: calc($width/7);
-    text-align: center;
-    line-height: 200%;
-    cursor: pointer;
-    display: block;
-    color: rgba(white, 0.5);
-    font-size: calc($width/15);
-    border: solid calc($width/150) rgba(white, 0.5);
-    border-radius: 10px;
+    margin: 0 auto 10px;
+
+    input {
+      width: 25px;
+      margin: 18px 10px 8px 0;
+
+      &:valid {
+        border-bottom-color: rgba(white, 0.5);
+        ~ label {
+          top: 15px;
+          left: 40px;
+          font-size: calc($width/15);
+          width: $width;
+          color: black;
+        }
+      }
+    }
   }
 
   .error_mesage {
@@ -143,12 +139,5 @@ $width: 300px; // Change Me
   }
   .valid {
     background-color: rgba($secondary-color, 0.7);
-  }
-
-  .error-msg {
-    margin: 0 auto;
-    color: $error-message-color;
-    width: calc($width * 1.5);
-    line-height: 1.5;
   }
 }

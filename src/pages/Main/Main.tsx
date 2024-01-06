@@ -47,7 +47,7 @@ const Main: FC = () => {
       headers,
     });
 
-    setResp(resp.data);
+    setResp(JSON.stringify(resp.data));
     console.log(resp.data);
   };
 

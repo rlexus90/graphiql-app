@@ -11,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IUser } from '../../types/user';
 import { ILang } from '../../types/localisation';
 import clsx from 'clsx';
+import { setUserThreeDay } from '../../helpers/LoginHeplers';
 
 const Login: FC = () => {
   const { setUserStore, delUserStore } = useActions();
@@ -32,15 +33,15 @@ const Login: FC = () => {
 
   const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
     const { email, password } = data;
+
     data &&
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          const user = userCredential.user as unknown as IUser;
-          setUserStore({
-            email: user.email,
-            uid: user.uid,
-            accessToken: user.accessToken,
-          });
+          const { email, uid, accessToken } =
+            userCredential.user as unknown as IUser;
+
+          setUserStore({ email, uid, accessToken });
+          if (data.remember) setUserThreeDay({ email, uid, accessToken });
           navigate('/main');
         })
         .catch((error) => {
@@ -96,6 +97,17 @@ const Login: FC = () => {
             {errors.password && (
               <p className={style.error_mesage}>{errors.password.message}</p>
             )}
+            <div
+              className={clsx({ [style.group]: true, [style.checkbox]: true })}
+            >
+              <input
+                type="checkbox"
+                id="remember"
+                className="checkbox"
+                {...register('remember')}
+              />
+              <label htmlFor="T_C">{text[language].remember}</label>
+            </div>
             <input
               type="submit"
               className={clsx({ [style.submit]: true, [style.valid]: isValid })}
@@ -119,6 +131,7 @@ const text: ILang = {
     comfirm: 'Увійти',
     exit: 'Ви дійсно хочете вийти?',
     exit_btn: 'Вийти',
+    remember: "Запам'ятай мене",
   },
   En: {
     signIn: 'Login',
@@ -128,5 +141,6 @@ const text: ILang = {
     comfirm: 'Login',
     exit: 'You really want exit?',
     exit_btn: 'Logout',
+    remember: 'Remember me',
   },
 };

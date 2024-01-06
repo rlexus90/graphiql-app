@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { getUser, setUser } from '../../helpers/LoginHeplers';
+import { delUser, getUser, setUser } from '../../helpers/LoginHeplers';
 import { IUser } from '../../types/user';
 
 interface IState {
@@ -27,7 +27,7 @@ export const authSlice = createSlice({
     },
     delUserStore: (state) => {
       state.user = undefined;
-      localStorage.removeItem('user');
+      delUser();
       state.isLogin = false;
     },
   },

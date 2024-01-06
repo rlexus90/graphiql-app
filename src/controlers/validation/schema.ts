@@ -29,6 +29,7 @@ export const setupLoginSchema = (lang: Language) => {
       .email(text[lang].invalidEmail)
       .required(text[lang].requireEmail),
     password: yup.string().required(text[lang].passwordReq),
+    remember: yup.boolean().required().oneOf([true, false]),
   });
 };
 
