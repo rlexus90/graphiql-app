@@ -4,10 +4,7 @@ import Main from '../../pages/Main/Main';
 import Login from '../../pages/Login/Login';
 import ProtectedPage from '../../component/ProtectedPage/ProtectedPage';
 import SignUp from '../../pages/SignUP/SignUp';
-
-import { Suspense } from 'react';
-import Loader from '../../component/Loader/Loader';
-import { About } from '../../lazyImports';
+import About from '../../pages/About/About';
 
 const router = createBrowserRouter([
   {
@@ -22,11 +19,7 @@ const router = createBrowserRouter([
   { path: '/signup', element: <SignUp /> },
   {
     path: '/',
-    element: (
-      <Suspense fallback={<Loader />}>
-        <About />
-      </Suspense>
-    ),
+    element: <About />,
   },
   {
     path: '*',
