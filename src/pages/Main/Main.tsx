@@ -3,14 +3,9 @@ import { useAppSelector } from '../../store/hook/hook';
 import { ILang } from '../../types/localisation';
 import Header from '../../component/Header/Header';
 import Loader from '../../component/Loader/Loader';
-import { EditorComponent } from '../../common/lazyImports';
-import axios from 'axios';
+import { Docs, EditorComponent } from '../../common/lazyImports';
 import style from './main.module.scss';
-import { getGraphyqlSchema } from '../../helpers/buildSchema';
-
-const endpoint = 'https://countries.trevorblades.com/graphql';
-
-const headers = { 'Content-Type': 'application/json' };
+import { sendRequest } from '../../controlers/requestApi/requestAPI';
 
 const goLang = `query Query {
   continents {
@@ -26,29 +21,18 @@ const Main: FC = () => {
   const lang = useAppSelector((store) => store.changeLang.language);
   const [query, setQuery] = useState(goLang);
   const [resp, setResp] = useState('');
+  const [docsVisible, setDocsVisible] = useState(false);
 
   const clickHandle = async () => {
     const val = JSON.stringify(query).replace(/\\n/g, '').replace(/\\t/g, '');
     console.log(val);
 
-    const grafQlQvery = {
-      operationName: 'Query',
-      query,
-      variables: {},
-    };
+    const resp = await sendRequest(query);
 
-    const resp = await axios({
-      url: endpoint,
-      method: 'post',
-      data: grafQlQvery,
-      headers,
-    });
+    setResp(JSON.stringify(resp));
+    console.log(resp);
 
-    setResp(JSON.stringify(resp.data));
-    console.log(resp.data);
-    // await getGraphyqlSchema()
-
-    console.log(await getGraphyqlSchema());
+    setDocsVisible(!docsVisible);
   };
 
   return (
@@ -59,6 +43,11 @@ const Main: FC = () => {
       <div className="wrapper">
         <div className="left_side"></div>
         <div className={style.code_editor}>
+          {docsVisible && (
+            <Suspense fallback={<Loader />}>
+              <Docs />
+            </Suspense>
+          )}
           <Suspense fallback={<Loader />}>
             <EditorComponent value={query} setValue={setQuery} />
           </Suspense>

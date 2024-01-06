@@ -2,7 +2,7 @@ import { getIntrospectionQuery, buildClientSchema, printSchema } from 'graphql';
 import { getEndpoint } from './endpointSet';
 import axios from 'axios';
 
-export const getGraphyqlSchema = async () => {
+const getGraphyqlSchema = async () => {
   const headers = { 'Content-Type': 'application/json' };
   const introspection = getIntrospectionQuery();
   const resp = await axios({
@@ -17,3 +17,5 @@ export const getGraphyqlSchema = async () => {
 
   return schema ?? 'Oops! Cant build schema';
 };
+
+export default getGraphyqlSchema;

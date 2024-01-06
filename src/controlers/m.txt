@@ -1,9 +1,0 @@
-operationName
-: 
-"Query"
-query
-: 
-"query Query {\n  continents {\n    name\n    code\n    countries {\n      name\n    }\n  }\n}\n"
-variables
-: 
-{}
