@@ -6,6 +6,7 @@ import Loader from '../../component/Loader/Loader';
 import { EditorComponent } from '../../common/lazyImports';
 import axios from 'axios';
 import style from './main.module.scss';
+import { getGraphyqlSchema } from '../../helpers/buildSchema';
 
 const endpoint = 'https://countries.trevorblades.com/graphql';
 
@@ -36,10 +37,6 @@ const Main: FC = () => {
       variables: {},
     };
 
-    // const resp = await axios.post(endpoint, grafQlQvery, {
-    // 	headers
-    // })
-
     const resp = await axios({
       url: endpoint,
       method: 'post',
@@ -49,6 +46,9 @@ const Main: FC = () => {
 
     setResp(JSON.stringify(resp.data));
     console.log(resp.data);
+    // await getGraphyqlSchema()
+
+    console.log(await getGraphyqlSchema());
   };
 
   return (
