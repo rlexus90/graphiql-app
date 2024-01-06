@@ -3,7 +3,7 @@ import { useAppSelector } from '../../store/hook/hook';
 import { ILang } from '../../types/localisation';
 import Header from '../../component/Header/Header';
 import Loader from '../../component/Loader/Loader';
-import { EditorComponent } from '../../lazyImports';
+import { EditorComponent } from '../../common/lazyImports';
 import axios from 'axios';
 import style from './main.module.scss';
 
