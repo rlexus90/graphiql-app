@@ -19,6 +19,7 @@ import {
   EXAMPLE_QUERY,
   EXAMPLE_VARIABLES,
 } from '../../common/constants';
+import FormDialog from '../Dialog/Dialog';
 
 type Props = {
   setResp: Dispatch<string>;
@@ -40,6 +41,7 @@ const RequestEditorComponent: FC<Props> = ({
   const [isValiables, setIsValiables] = useState(true);
   const [mainEditorHeight, setMainEditorHeight] = useState<number>();
   const [isSecondEdit, setIsSecondEdit] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
@@ -70,6 +72,10 @@ const RequestEditorComponent: FC<Props> = ({
     setQuery(prettieStr(query));
   };
 
+  const changeEndpoint = () => {
+    setOpenDialog(true);
+  };
+
   const fillExample = () => {
     setQuery(EXAMPLE_QUERY);
     setVariables(EXAMPLE_VARIABLES);
@@ -78,6 +84,7 @@ const RequestEditorComponent: FC<Props> = ({
 
   return (
     <>
+      {openDialog && <FormDialog setOpen={setOpenDialog} />}
       <div className={style.wrapper}>
         <div>
           <h1>{text[lang].editor}</h1>
@@ -138,7 +145,7 @@ const RequestEditorComponent: FC<Props> = ({
           <li title={text[lang].docs} onClick={togleDocs}>
             <FontAwesomeIcon icon={faBook} />
           </li>
-          <li title={text[lang].reqPoint} onClick={togleDocs}>
+          <li title={text[lang].reqPoint} onClick={changeEndpoint}>
             <FontAwesomeIcon icon={faGlobe} />
           </li>
         </ul>

@@ -7,3 +7,7 @@ export const setEndpoint = (endpoint: string) => {
 export const getEndpoint = () => {
   return localStorage.getItem('endpoint') ?? ENDPOINT;
 };
+
+export const delEndpoint = () => {
+  localStorage.removeItem('endpoint');
+};

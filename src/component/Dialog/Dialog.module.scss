@@ -1,0 +1,92 @@
+$main-color: #ffffff;
+$form-color: $main-color;
+$secondary-color: #2196f3;
+$error-message-color: rgb(157, 3, 3);
+$color-text: rgba(black, 0.5);
+$width: 300px; // Change Me
+
+.btn {
+  display: flex;
+}
+
+.wrapper {
+  z-index: 500;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+
+  width: 500px;
+  height: 300px;
+  margin: 0 auto;
+  background-color: $main-color;
+  border: 3px solid $color-text;
+  border-radius: 10px;
+
+  .group {
+    margin: 20px auto 0;
+    width: $width;
+    height: calc($width/6);
+    overflow: hidden;
+    position: relative;
+  }
+
+  label {
+    position: absolute;
+    top: calc($width/15);
+    // color: rgba(white, 0.5);
+    color: $color-text;
+    font-size: calc($width/15);
+    cursor: text;
+    transition: 0.25s ease;
+  }
+
+  input {
+    display: block;
+    width: $width;
+    padding-top: calc($width/15);
+    border: none;
+    border-radius: 0;
+    border-bottom: solid calc($width/150) $color-text;
+    color: rgb(0, 0, 0);
+    background: $main-color;
+    font-size: calc($width/15);
+    transition: 0.3s ease;
+    &:valid {
+      border-bottom-color: $secondary-color;
+      ~ label {
+        top: 0;
+        font-size: calc($width/25);
+        color: $secondary-color;
+      }
+    }
+    &:focus {
+      outline: none;
+      border-bottom-color: $secondary-color;
+      ~ label {
+        top: 0;
+        font-size: calc($width/25);
+        color: $secondary-color;
+      }
+
+      // ~ .bar:before {
+      //   transform: translateX(0);
+      // }
+    }
+
+    // Stop Chrome's hideous pale yellow background on auto-fill
+  }
+
+  .submit {
+    cursor: pointer;
+    width: 150px;
+    margin: 30px auto 0px;
+    padding: 0;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: solid calc($width/150) $color-text;
+  }
+  .valid {
+    background-color: rgba($secondary-color, 0.7);
+  }
+}
