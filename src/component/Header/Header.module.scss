@@ -16,6 +16,9 @@ $color_text: black;
     cursor: pointer;
   }
 
+  a {
+    color: $color_text;
+  }
   a:visited {
     color: $color_text;
   }

@@ -6,24 +6,35 @@ import clsx from 'clsx';
 import style from './RequestEditor.module.scss';
 import { prettieStr } from '../../helpers/prettieStr';
 import { ILang } from '../../types/localisation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faPlay,
+  faBroom,
+  faFloppyDisk,
+  faBook,
+  faGlobe,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  EXAMPLE_HEADERS,
+  EXAMPLE_QUERY,
+  EXAMPLE_VARIABLES,
+} from '../../common/constants';
 
 type Props = {
   setResp: Dispatch<string>;
   width: number;
+  docsVisible: boolean;
+  setDocsVisible: Dispatch<boolean>;
 };
 
-const goLang = `query Query {  continents {
-    name
-    code
-    countries {
-      name
-    }
-  }
-}`;
-
-const RequestEditorComponent: FC<Props> = ({ setResp, width }) => {
+const RequestEditorComponent: FC<Props> = ({
+  setResp,
+  width,
+  docsVisible,
+  setDocsVisible,
+}) => {
   const lang = useAppSelector((store) => store.changeLang.language);
-  const [query, setQuery] = useState(goLang);
+  const [query, setQuery] = useState('');
   const [variables, setVariables] = useState('');
   const [headers, setHeaders] = useState('');
   const [isValiables, setIsValiables] = useState(true);
@@ -34,9 +45,9 @@ const RequestEditorComponent: FC<Props> = ({ setResp, width }) => {
   useEffect(() => {
     const WH = window.innerHeight;
     const labelHeight = ref.current ? ref.current.clientHeight : 0;
-    setMainEditorHeight((WH * 70) / 100 - labelHeight);
+    setMainEditorHeight((WH * 80) / 100 - labelHeight);
     if (isSecondEdit)
-      setMainEditorHeight((WH * 70) / 100 - (WH * 20) / 100 - labelHeight);
+      setMainEditorHeight((WH * 80) / 100 - (WH * 20) / 100 - labelHeight);
   }, [isSecondEdit]);
 
   const showSecondEdit = () => {
@@ -45,6 +56,9 @@ const RequestEditorComponent: FC<Props> = ({ setResp, width }) => {
 
   const togleSecondEdit = () => {
     setIsSecondEdit(!isSecondEdit);
+  };
+  const togleDocs = () => {
+    setDocsVisible(!docsVisible);
   };
 
   const send = async () => {
@@ -56,55 +70,79 @@ const RequestEditorComponent: FC<Props> = ({ setResp, width }) => {
     setQuery(prettieStr(query));
   };
 
+  const fillExample = () => {
+    setQuery(EXAMPLE_QUERY);
+    setVariables(EXAMPLE_VARIABLES);
+    setHeaders(EXAMPLE_HEADERS);
+  };
+
   return (
     <>
       <div className={style.wrapper}>
-        <CodeMirror
-          value={query}
-          onChange={(e) => setQuery(e)}
-          width={`${width}px`}
-          height={`${mainEditorHeight}px`}
-        />
-        <p ref={ref}>
-          <span
-            onClick={() => {
-              setIsValiables(true);
-              showSecondEdit();
-            }}
-            className={clsx({ [style.active]: isValiables })}
-          >
-            {text[lang].variables}
-          </span>
-          <span
-            onClick={() => {
-              setIsValiables(false);
-              showSecondEdit();
-            }}
-            className={clsx({ [style.active]: !isValiables })}
-          >
-            {text[lang].headers}
-          </span>
-          <span onClick={togleSecondEdit}>{isSecondEdit ? `∨` : '∧'}</span>
-        </p>
-        {isSecondEdit && isValiables && (
+        <div>
+          <h1>{text[lang].editor}</h1>
           <CodeMirror
-            value={variables}
-            onChange={(e) => setVariables(e)}
+            value={query}
+            onChange={(e) => setQuery(e)}
             width={`${width}px`}
-            height="20vh"
+            height={`${mainEditorHeight}px`}
           />
-        )}
-        {isSecondEdit && !isValiables && (
-          <CodeMirror
-            value={headers}
-            onChange={(e) => setHeaders(e)}
-            width={`${width}px`}
-            height="20vh"
-          />
-        )}
+          <p ref={ref} className={style.props}>
+            <span
+              onClick={() => {
+                setIsValiables(true);
+                showSecondEdit();
+              }}
+              className={clsx({ [style.active]: isValiables })}
+            >
+              {text[lang].variables}
+            </span>
+            <span
+              onClick={() => {
+                setIsValiables(false);
+                showSecondEdit();
+              }}
+              className={clsx({ [style.active]: !isValiables })}
+            >
+              {text[lang].headers}
+            </span>
+            <span onClick={togleSecondEdit}>{isSecondEdit ? `∨` : '∧'}</span>
+          </p>
+          {isSecondEdit && isValiables && (
+            <CodeMirror
+              value={variables}
+              onChange={(e) => setVariables(e)}
+              width={`${width}px`}
+              height="20vh"
+            />
+          )}
+          {isSecondEdit && !isValiables && (
+            <CodeMirror
+              value={headers}
+              onChange={(e) => setHeaders(e)}
+              width={`${width}px`}
+              height="20vh"
+            />
+          )}
+        </div>
+        <ul className={style.icons}>
+          <li title={text[lang].send} onClick={send}>
+            <FontAwesomeIcon icon={faPlay} />
+          </li>
+          <li title={text[lang].prettie} onClick={prettieQuery}>
+            <FontAwesomeIcon icon={faBroom} />
+          </li>
+          <li title={text[lang].example} onClick={fillExample}>
+            <FontAwesomeIcon icon={faFloppyDisk} />
+          </li>
+          <li title={text[lang].docs} onClick={togleDocs}>
+            <FontAwesomeIcon icon={faBook} />
+          </li>
+          <li title={text[lang].reqPoint} onClick={togleDocs}>
+            <FontAwesomeIcon icon={faGlobe} />
+          </li>
+        </ul>
       </div>
-      <button onClick={send}>send</button>
-      <button onClick={prettieQuery}>Pretite</button>
     </>
   );
 };
@@ -113,11 +151,23 @@ export default RequestEditorComponent;
 
 const text: ILang = {
   Ua: {
-    variables: 'Variables',
-    headers: 'Headers',
+    variables: 'Змінні',
+    headers: 'Заголовки',
+    send: 'Відправити запит',
+    prettie: 'Прикрасити',
+    example: 'Приклад коду',
+    docs: 'Показати документацію',
+    reqPoint: 'Змінити кінцеву точку',
+    editor: 'Редактор запитів',
   },
   En: {
     variables: 'Variables',
     headers: 'Headers',
+    send: 'Send request',
+    prettie: 'Pretiie',
+    example: 'Example code',
+    docs: 'Show docs',
+    reqPoint: 'Change endpoint',
+    editor: 'Request editor',
   },
 };

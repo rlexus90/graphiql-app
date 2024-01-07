@@ -1,8 +1,43 @@
 .wrapper {
-  height: 70vh;
-  border: 1px solid black;
+  // height: 80vh;
+  display: flex;
+  h1 {
+    font-size: 2em;
+    text-align: center;
+    padding-bottom: 5px;
+  }
 }
 
 .active {
   font-weight: 800;
+}
+
+.icons {
+  margin-top: 1em;
+  font-size: 2em;
+  z-index: 5;
+  background-color: #f5f5f5;
+  li {
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+  }
+}
+
+.props {
+  display: flex;
+  padding: 5px 0.5em 5px 2em;
+  font-size: 1.3em;
+  background-color: #f5f5f5;
+  span {
+    cursor: pointer;
+    display: block;
+    margin: 0 1em;
+  }
+  span:last-child {
+    margin-left: auto;
+  }
 }

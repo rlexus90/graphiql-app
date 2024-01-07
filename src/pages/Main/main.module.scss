@@ -1,3 +1,18 @@
-.code_editor {
+.wrapper {
+  padding: 1em;
+  margin: 0 auto;
   display: flex;
+  // justify-content: space-around;
+  gap: 15px;
+  @media (max-width: 600px) {
+    display: block;
+  }
+}
+
+.editor {
+  flex-grow: 0;
+  padding: 10px;
+  border: 5px solid rgb(202, 202, 202);
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px;
 }
