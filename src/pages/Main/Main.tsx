@@ -3,24 +3,13 @@ import { useAppSelector } from '../../store/hook/hook';
 import { ILang } from '../../types/localisation';
 import Header from '../../component/Header/Header';
 import Loader from '../../component/Loader/Loader';
-import { Docs, EditorComponent } from '../../common/lazyImports';
+import { Docs, Response, RequestEditor } from '../../common/lazyImports';
 import style from './main.module.scss';
-import { sendRequest } from '../../controlers/requestApi/requestAPI';
 import { returnSizeEditor } from '../../helpers/windowResize';
-
-const goLang = `query Query {
-  continents {
-    name
-    code
-    countries {
-      name
-    }
-  }
-}`;
 
 const Main: FC = () => {
   const lang = useAppSelector((store) => store.changeLang.language);
-  const [query, setQuery] = useState(goLang);
+
   const [resp, setResp] = useState('');
   const [docsVisible, setDocsVisible] = useState(false);
   const [width, setWidth] = useState<number>(returnSizeEditor(false));
@@ -40,14 +29,8 @@ const Main: FC = () => {
   }, [docsVisible, windowWinth]);
 
   const clickHandle = async () => {
-    const val = JSON.stringify(query).replace(/\\n/g, '').replace(/\\t/g, '');
-    console.log(val);
-
-    const respAnswer = await sendRequest(query);
-
-    setResp(JSON.stringify(respAnswer, null, 2));
-    console.log(resp);
-
+    // const val = JSON.stringify(query).replace(/\\n/g, '').replace(/\\t/g, '');
+    // console.log(val);
     setDocsVisible(!docsVisible);
   };
 
@@ -65,11 +48,11 @@ const Main: FC = () => {
             </Suspense>
           )}
           <Suspense fallback={<Loader />}>
-            <EditorComponent value={query} setValue={setQuery} width={width} />
+            <RequestEditor setResp={setResp} width={width} />
           </Suspense>
 
           <Suspense fallback={<Loader />}>
-            <EditorComponent value={resp} width={width} />
+            <Response value={resp} width={width} />
           </Suspense>
           <button onClick={clickHandle}>Click</button>
         </div>

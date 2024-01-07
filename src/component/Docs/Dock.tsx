@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
-import EditorComponent from '../EditorComponent/EditorComponent';
 import getGraphyqlSchema from '../../helpers/buildSchema';
+import CodeMirror from '@uiw/react-codemirror';
 
 type Props = {
   width: number;
@@ -19,7 +19,7 @@ const Docs: FC<Props> = ({ width }) => {
 
   return (
     <>
-      <EditorComponent value={dock} width={width} />
+      <CodeMirror value={dock} width={`${width}px`} height="70vh" />
     </>
   );
 };
