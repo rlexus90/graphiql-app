@@ -2,7 +2,11 @@ import { FC, useEffect, useState } from 'react';
 import EditorComponent from '../EditorComponent/EditorComponent';
 import getGraphyqlSchema from '../../helpers/buildSchema';
 
-const Docs: FC = () => {
+type Props = {
+  width: number;
+};
+
+const Docs: FC<Props> = ({ width }) => {
   const [dock, setDocs] = useState('');
 
   const greateDocs = async () => {
@@ -15,7 +19,7 @@ const Docs: FC = () => {
 
   return (
     <>
-      <EditorComponent value={dock} />
+      <EditorComponent value={dock} width={width} />
     </>
   );
 };
