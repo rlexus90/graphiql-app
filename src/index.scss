@@ -13,3 +13,7 @@ html {
   display: flex;
   flex-direction: column;
 }
+
+a.active {
+  text-decoration: underline;
+}

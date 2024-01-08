@@ -13,6 +13,7 @@ import { ILang } from '../../types/localisation';
 import clsx from 'clsx';
 import { setUserThreeDay } from '../../helpers/LoginHeplers';
 import Footer from '../../component/Footer/Footer';
+import Alert from 'react-popup-alert';
 
 const Login: FC = () => {
   const { setUserStore, delUserStore } = useActions();
@@ -77,7 +78,6 @@ const Login: FC = () => {
         <div className={style.wrapper}>
           <h1>{text[language].signIn}</h1>
           <Link to="/signup">{text[language].have_acc}</Link>
-          {errorMsg && <p>{errorMsg}</p>}
           <form onSubmit={handleSubmit(onSubmit)} className="form">
             <div className={style.group}>
               <input type="email" id="Email" required {...register('email')} />
@@ -117,6 +117,21 @@ const Login: FC = () => {
           </form>
         </div>
       )}
+      {errorMsg && (
+        <div className={style.alert_wrapper}>
+          <div className={style.alert}>
+            <Alert
+              btnText={text[language].close}
+              text={errorMsg}
+              type="error"
+              show={Boolean(errorMsg)}
+              onClosePress={() => setErrorMsg('')}
+              pressCloseOnOutsideClick={true}
+              showBorderBottom={true}
+            />
+          </div>
+        </div>
+      )}
       <Footer />
     </>
   );
@@ -134,6 +149,7 @@ const text: ILang = {
     exit: 'Ви дійсно хочете вийти?',
     exit_btn: 'Вийти',
     remember: "Запам'ятай мене",
+    close: 'Закрити',
   },
   En: {
     signIn: 'Login',
@@ -144,5 +160,6 @@ const text: ILang = {
     exit: 'You really want exit?',
     exit_btn: 'Logout',
     remember: 'Remember me',
+    close: 'Close',
   },
 };
