@@ -23,3 +23,18 @@ it('test Navigation', async () => {
   const text2 = await screen.findByTestId('signUp');
   expect(text2).toBeInTheDocument();
 });
+
+it('Test Auth', async () => {
+  renderApp();
+  const signIn = await screen.findByText('Sign in');
+  await userEvent.click(signIn);
+  const email = screen.getByTestId('email');
+  await userEvent.type(email, 'rlexus90@gmail.com');
+  const pass = await screen.getByTestId('password');
+  await userEvent.type(pass, 'Q!1qwerty');
+  const submit = screen.getByTestId('submit');
+  await userEvent.click(submit);
+
+  const main = await screen.findByTestId('codeEditor');
+  expect(main).toBeInTheDocument();
+});

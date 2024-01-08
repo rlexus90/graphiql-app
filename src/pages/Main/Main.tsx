@@ -37,7 +37,7 @@ const Main: FC = () => {
             </Suspense>
           </div>
         )}
-        <div className={style.editor}>
+        <div data-testid="codeEditor" className={style.editor}>
           <Suspense fallback={<Loader />}>
             <RequestEditor
               setResp={setResp}

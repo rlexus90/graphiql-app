@@ -80,7 +80,13 @@ const Login: FC = () => {
           <Link to="/signup">{text[language].have_acc}</Link>
           <form onSubmit={handleSubmit(onSubmit)} className="form">
             <div className={style.group}>
-              <input type="email" id="Email" required {...register('email')} />
+              <input
+                data-testid="email"
+                type="email"
+                id="Email"
+                required
+                {...register('email')}
+              />
               <label htmlFor="Email">{text[language].email}</label>
             </div>
             {errors.email && (
@@ -88,6 +94,7 @@ const Login: FC = () => {
             )}
             <div className={style.group}>
               <input
+                data-testid="password"
                 type="password"
                 id="Password"
                 required
@@ -110,6 +117,7 @@ const Login: FC = () => {
               <label htmlFor="T_C">{text[language].remember}</label>
             </div>
             <input
+              data-testid="submit"
               type="submit"
               className={clsx({ [style.submit]: true, [style.valid]: isValid })}
               value={text[language].comfirm}
