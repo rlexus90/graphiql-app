@@ -14,7 +14,6 @@ const Header: FC = () => {
   const stikyHeader = () => {
     const currentScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
-    console.log(currentScroll);
     if (currentScroll > 20) setStiky(true);
     if (currentScroll == 0) setStiky(false);
   };
