@@ -6,6 +6,8 @@ export const prettieStr = (sting: string) => {
     .replace(/\\t/g, ' ')
     .replace(/\(/g, ' ( ')
     .replace(/\)/g, ' ) ')
+    .replace(/\}/g, ' } ')
+    .replace(/\{/g, ' { ')
     .replace(/"/g, '');
   const arr = val.split(' ').filter((el) => el);
   let n = 0;
