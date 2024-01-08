@@ -1,9 +1,12 @@
 $color_text: black;
 
 .wrapper {
+  position: relative;
   padding: 1em 2em;
   font-size: 2em;
   color: $color_text;
+  background-color: inherit;
+  transition: all 1000ms;
 }
 
 .nav {
@@ -22,4 +25,19 @@ $color_text: black;
   a:visited {
     color: $color_text;
   }
+}
+
+.stiky {
+  padding: 0.7em 2em;
+
+  font-size: 2em;
+  color: $color_text;
+  background-color: rgb(138, 138, 138);
+  transition: all 1000ms;
+}
+
+.header_stiky {
+  z-index: 1000;
+  position: sticky;
+  top: 0;
 }
