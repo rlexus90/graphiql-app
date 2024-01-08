@@ -76,7 +76,7 @@ const Login: FC = () => {
         </>
       ) : (
         <div className={style.wrapper}>
-          <h1>{text[language].signIn}</h1>
+          <h1 data-testid="login">{text[language].signIn}</h1>
           <Link to="/signup">{text[language].have_acc}</Link>
           <form onSubmit={handleSubmit(onSubmit)} className="form">
             <div className={style.group}>

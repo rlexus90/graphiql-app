@@ -11,7 +11,7 @@ const About: FC = () => {
   return (
     <>
       <Header />
-      <div className={style.wrapper}>
+      <div className={style.wrapper} data-testid="about-page">
         <div className={style.container}>
           <img className={style.photo} src="/photo.jpg" alt="my Photo" />
           <p>{text[lang].description}</p>

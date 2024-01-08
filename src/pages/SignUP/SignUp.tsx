@@ -61,7 +61,7 @@ const SignUp: FC = () => {
         <Navigate to={'/login'} />
       ) : (
         <div className={style.wrapper}>
-          <h1>{text[language].signUp}</h1>
+          <h1 data-testid="signUp">{text[language].signUp}</h1>
           <Link to="/login">{text[language].have_acc}</Link>
           <form onSubmit={handleSubmit(onSubmit)} className="form">
             <div className={style.group}>
