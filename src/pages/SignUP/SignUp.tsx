@@ -12,7 +12,6 @@ import { IUser } from '../../types/user';
 import { ILang } from '../../types/localisation';
 import clsx from 'clsx';
 import Footer from '../../component/Footer/Footer';
-import Alert from 'react-popup-alert';
 
 const SignUp: FC = () => {
   const { setUserStore } = useActions();
@@ -106,15 +105,16 @@ const SignUp: FC = () => {
       {errorMsg && (
         <div className={style.alert_wrapper}>
           <div className={style.alert}>
-            <Alert
-              btnText={text[language].close}
-              text={errorMsg}
-              type="error"
-              show={Boolean(errorMsg)}
-              onClosePress={() => setErrorMsg('')}
-              pressCloseOnOutsideClick={true}
-              showBorderBottom={true}
-            />
+            <h3>{text[language].error}</h3>
+            <p>{errorMsg}</p>
+            <a
+              role="button"
+              onClick={() => {
+                setErrorMsg('');
+              }}
+            >
+              {text[language].close}
+            </a>
           </div>
         </div>
       )}
@@ -133,6 +133,7 @@ const text: ILang = {
     pass: 'Пароль',
     comfirm: 'Зареєструватися',
     close: 'Закрити',
+    error: 'ПОПЕРЕДЖЕННЯ',
   },
   En: {
     signUp: 'Sign Up',
@@ -141,5 +142,6 @@ const text: ILang = {
     pass: 'Password',
     comfirm: 'Sign Up',
     close: 'Close',
+    error: 'WARNING',
   },
 };
