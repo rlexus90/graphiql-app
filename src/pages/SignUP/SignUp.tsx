@@ -11,6 +11,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { IUser } from '../../types/user';
 import { ILang } from '../../types/localisation';
 import clsx from 'clsx';
+import Footer from '../../component/Footer/Footer';
 
 const SignUp: FC = () => {
   const { setUserStore } = useActions();
@@ -102,6 +103,7 @@ const SignUp: FC = () => {
           </form>
         </div>
       )}
+      <Footer />
     </>
   );
 };

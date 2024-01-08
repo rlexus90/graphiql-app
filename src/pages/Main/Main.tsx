@@ -4,6 +4,7 @@ import Loader from '../../component/Loader/Loader';
 import { Docs, Response, RequestEditor } from '../../common/lazyImports';
 import style from './main.module.scss';
 import { returnSizeEditor } from '../../helpers/windowResize';
+import Footer from '../../component/Footer/Footer';
 
 const Main: FC = () => {
   const [resp, setResp] = useState('');
@@ -53,6 +54,7 @@ const Main: FC = () => {
           </Suspense>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

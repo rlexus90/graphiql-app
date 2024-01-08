@@ -12,6 +12,7 @@ import { IUser } from '../../types/user';
 import { ILang } from '../../types/localisation';
 import clsx from 'clsx';
 import { setUserThreeDay } from '../../helpers/LoginHeplers';
+import Footer from '../../component/Footer/Footer';
 
 const Login: FC = () => {
   const { setUserStore, delUserStore } = useActions();
@@ -116,6 +117,7 @@ const Login: FC = () => {
           </form>
         </div>
       )}
+      <Footer />
     </>
   );
 };

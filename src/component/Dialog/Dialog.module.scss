@@ -1,7 +1,6 @@
 $main-color: #ffffff;
 $form-color: $main-color;
 $secondary-color: #2196f3;
-$error-message-color: rgb(157, 3, 3);
 $color-text: rgba(black, 0.5);
 $width: 300px; // Change Me
 
@@ -33,7 +32,6 @@ $width: 300px; // Change Me
   label {
     position: absolute;
     top: calc($width/15);
-    // color: rgba(white, 0.5);
     color: $color-text;
     font-size: calc($width/15);
     cursor: text;
@@ -67,13 +65,7 @@ $width: 300px; // Change Me
         font-size: calc($width/25);
         color: $secondary-color;
       }
-
-      // ~ .bar:before {
-      //   transform: translateX(0);
-      // }
     }
-
-    // Stop Chrome's hideous pale yellow background on auto-fill
   }
 
   .submit {
